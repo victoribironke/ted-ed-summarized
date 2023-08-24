@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="w-full flex items-center justify-center gap-2 text-[#999999]">
       <Link
-        href="https://victoribironke.com"
+        href="https://victoribironke.netlify.app"
         className={className}
         target="_blank"
       >
