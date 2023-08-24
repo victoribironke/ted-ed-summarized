@@ -20,7 +20,7 @@ const Search = () => {
     <section className="w-full flex items-center justify-center flex-col md:flex-row gap-4 max-w-5xl">
       <input
         type="text"
-        placeholder="Search by video id..."
+        placeholder="Search by video ID..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyUp={(e) => e.key === "Enter" && !disabled && search()}
