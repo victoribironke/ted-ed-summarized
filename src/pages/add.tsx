@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import GetVideoData from "@/components/GetVideoData";
 import { auth } from "@/firebase/firebase";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const Add = () => {
@@ -65,6 +69,13 @@ const Add = () => {
             </h1>
 
             <AddManually />
+
+            <button
+              onClick={() => signOut(auth)}
+              className="text-black max-w-lg bg-white rounded-lg flex items-center justify-center gap-3 h-12 w-full font-semibold"
+            >
+              Sign out
+            </button>
           </>
         ) : (
           <>
