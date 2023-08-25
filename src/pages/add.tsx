@@ -17,6 +17,8 @@ const Add = () => {
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
 
+  signOut(auth);
+
   const signIn = async () => {
     try {
       setLoading(true);
