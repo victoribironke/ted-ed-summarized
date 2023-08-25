@@ -1,46 +1,40 @@
 import { useEffect, useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "@/firebase/firebase";
+import { db } from "@/firebase/firebase";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { videoData } from "@/atoms/atoms";
+import { useRecoilState } from "recoil";
 
 const AddManually = () => {
-  const [id, setId] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [title, setTitle] = useState("");
-  const [videoPublished, setVideoPublished] = useState("");
-  const [summaryGenerated, setSummaryGenerated] = useState("");
+  const [summaryGenerated, setSummaryGenerated] = useState(
+    new Date().toISOString()
+  );
   const [summaryUrl, setSummaryUrl] = useState("");
-  const [password, setPassword] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [{ thumbnail, publishedAt, title, videoId }, setVideoInfo] =
+    useRecoilState(videoData);
 
   const reset = () => {
-    setId("");
-    setImageUrl("");
-    setPassword("");
-    setSummaryGenerated("");
-    setTitle("");
-    setVideoPublished("");
     setSummaryUrl("");
+    setVideoInfo({
+      thumbnail: "",
+      publishedAt: "",
+      title: "",
+      videoId: "",
+    });
   };
 
   const add = async () => {
     try {
       setLoading(true);
 
-      await signInWithEmailAndPassword(
-        auth,
-        process.env.NEXT_PUBLIC_EMAIL!,
-        password
-      );
-
       await updateDoc(doc(db, "admin/data"), {
         generated: arrayUnion({
-          id,
-          imageUrl,
+          id: videoId,
+          imageUrl: thumbnail,
           title,
-          videoPublished,
+          videoPublished: publishedAt,
           summaryGenerated,
           summaryUrl,
         }),
@@ -56,84 +50,82 @@ const AddManually = () => {
 
   useEffect(() => {
     const isFilled = [
-      id,
-      imageUrl,
       title,
-      videoPublished,
       summaryGenerated,
-      password,
       summaryUrl,
+      thumbnail,
+      publishedAt,
+      title,
+      videoId,
     ].every((s) => s !== "");
 
     if (isFilled) setDisabled(false);
     else setDisabled(true);
   }, [
-    id,
-    imageUrl,
     title,
-    videoPublished,
     summaryGenerated,
-    password,
     summaryUrl,
+    thumbnail,
+    publishedAt,
+    title,
+    videoId,
   ]);
 
   return (
     <>
-      <input
-        type="text"
-        placeholder="Video ID..."
-        value={id}
-        onChange={(e) => setId(e.target.value)}
-        className="w-full h-12 py-2 px-5 bg-[#1a1a1a] border-2 border-regular outline-none rounded-lg text-white font-gt max-w-lg"
-      />
+      <div className="w-full flex gap-4 max-w-lg flex-col sm:flex-row">
+        <input
+          type="text"
+          placeholder="Video ID..."
+          value={videoId}
+          disabled
+          className="w-full h-12 py-2 px-5 bg-[#1a1a1a] border-2 border-regular outline-none rounded-lg text-white font-gt max-w-lg disabled:cursor-not-allowed"
+        />
 
-      <input
-        type="text"
-        placeholder="Image URL..."
-        value={imageUrl}
-        onChange={(e) => setImageUrl(e.target.value)}
-        className="w-full h-12 py-2 px-5 bg-[#1a1a1a] border-2 border-regular outline-none rounded-lg text-white font-gt max-w-lg"
-      />
+        <input
+          type="text"
+          placeholder="Image URL..."
+          value={thumbnail}
+          disabled
+          className="w-full h-12 py-2 px-5 disabled:cursor-not-allowed bg-[#1a1a1a] border-2 border-regular outline-none rounded-lg text-white font-gt max-w-lg"
+        />
+      </div>
 
-      <input
-        type="text"
-        placeholder="Title..."
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        className="w-full h-12 py-2 px-5 bg-[#1a1a1a] border-2 border-regular outline-none rounded-lg text-white font-gt max-w-lg"
-      />
+      <div className="w-full flex gap-4 max-w-lg flex-col sm:flex-row">
+        <input
+          type="text"
+          placeholder="Title..."
+          value={title}
+          disabled
+          className="w-full h-12 py-2 px-5 disabled:cursor-not-allowed bg-[#1a1a1a] border-2 border-regular outline-none rounded-lg text-white font-gt max-w-lg"
+        />
 
-      <input
-        type="text"
-        placeholder="Video published date..."
-        value={videoPublished}
-        onChange={(e) => setVideoPublished(e.target.value)}
-        className="w-full h-12 py-2 px-5 bg-[#1a1a1a] border-2 border-regular outline-none rounded-lg text-white font-gt max-w-lg"
-      />
+        <input
+          type="text"
+          placeholder="Video published date..."
+          value={publishedAt}
+          disabled
+          className="w-full h-12 py-2 px-5 disabled:cursor-not-allowed bg-[#1a1a1a] border-2 border-regular outline-none rounded-lg text-white font-gt max-w-lg"
+        />
+      </div>
 
-      <input
-        type="text"
-        placeholder="Summary URL..."
-        value={summaryUrl}
-        onChange={(e) => setSummaryUrl(e.target.value)}
-        className="w-full h-12 py-2 px-5 bg-[#1a1a1a] border-2 border-regular outline-none rounded-lg text-white font-gt max-w-lg"
-      />
+      <div className="w-full flex gap-4 max-w-lg flex-col sm:flex-row">
+        <input
+          type="text"
+          placeholder="Summary URL..."
+          value={summaryUrl}
+          onChange={(e) => setSummaryUrl(e.target.value)}
+          className="w-full h-12 py-2 px-5 bg-[#1a1a1a] border-2 border-regular outline-none rounded-lg text-white font-gt max-w-lg"
+        />
 
-      <input
-        type="text"
-        placeholder="Summary generated date..."
-        value={summaryGenerated}
-        onChange={(e) => setSummaryGenerated(e.target.value)}
-        className="w-full h-12 py-2 px-5 bg-[#1a1a1a] border-2 border-regular outline-none rounded-lg text-white font-gt max-w-lg"
-      />
-
-      <input
-        type="password"
-        placeholder="Password..."
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="w-full h-12 py-2 px-5 bg-[#1a1a1a] border-2 border-regular outline-none rounded-lg text-white font-gt max-w-lg"
-      />
+        <input
+          type="text"
+          placeholder="Summary generated date..."
+          value={summaryGenerated}
+          disabled
+          className="w-full h-12 py-2 px-5 disabled:cursor-not-allowed bg-[#1a1a1a] border-2 border-regular outline-none rounded-lg text-white font-gt max-w-lg"
+        />
+      </div>
 
       <div className="w-full flex gap-4 max-w-lg flex-col sm:flex-row">
         <button

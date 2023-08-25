@@ -21,12 +21,8 @@ const Footer = () => {
         Twitter
       </Link>
       •
-      <Link
-        href="https://github.com/victoribironke/ted-ed-summarized"
-        className={className}
-        target="_blank"
-      >
-        Github
+      <Link href="https://ed.ted.com" className={className} target="_blank">
+        Ted-Ed
       </Link>
     </footer>
   );
