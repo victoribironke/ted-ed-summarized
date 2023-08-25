@@ -14,7 +14,11 @@ const GetVideoData = () => {
   const get = async () => {
     setLoading(true);
     const res = await (
-      await fetch(`/api/get-video-data?id=${extractVideoId(link)}`)
+      await fetch(
+        `/api/get-video-data?id=${extractVideoId(link)}&password=${
+          process.env.NEXT_PUBLIC_PASSWORD
+        }`
+      )
     ).json();
 
     if (res.success) {
