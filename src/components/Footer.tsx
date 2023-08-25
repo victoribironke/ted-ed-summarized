@@ -5,6 +5,10 @@ const Footer = () => {
 
   return (
     <footer className="w-full flex items-center justify-center gap-2 text-[#999999]">
+      <Link href="https://ed.ted.com" className={className} target="_blank">
+        Ted-Ed
+      </Link>
+      •
       <Link
         href="https://victoribironke.netlify.app"
         className={className}
@@ -21,8 +25,12 @@ const Footer = () => {
         Twitter
       </Link>
       •
-      <Link href="https://ed.ted.com" className={className} target="_blank">
-        Ted-Ed
+      <Link
+        href="https://github.com/victoribironke/ted-ed-summarized"
+        className={className}
+        target="_blank"
+      >
+        Github
       </Link>
     </footer>
   );
