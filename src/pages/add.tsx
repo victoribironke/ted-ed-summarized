@@ -4,11 +4,7 @@ import { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import GetVideoData from "@/components/GetVideoData";
 import { auth } from "@/firebase/firebase";
-import {
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const Add = () => {
@@ -16,8 +12,6 @@ const Add = () => {
   const [password, setPassword] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
-
-  signOut(auth);
 
   const signIn = async () => {
     try {
