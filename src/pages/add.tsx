@@ -26,6 +26,7 @@ const Add = () => {
         process.env.NEXT_PUBLIC_EMAIL!,
         password
       );
+      setPassword("");
     } catch (e) {
       alert("Incorrect password.");
     } finally {
