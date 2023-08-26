@@ -10,14 +10,6 @@ const Footer = () => {
       </Link>
       •
       <Link
-        href="https://victoribironke.netlify.app"
-        className={className}
-        target="_blank"
-      >
-        Creator
-      </Link>
-      •
-      <Link
         href="https://twitter.com/tededsummarized"
         className={className}
         target="_blank"
