@@ -42,7 +42,7 @@ const AddManually = () => {
 
       reset();
     } catch (e) {
-      alert("Incorrect password.");
+      alert("Error uploading entry.");
     } finally {
       setLoading(false);
     }
