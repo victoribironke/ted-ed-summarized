@@ -7,7 +7,7 @@ const Videos = ({ data }: VideosProps) => {
   const filterValue = useRecoilValue(filter);
 
   return (
-    <section className="w-full flex flex-wrap items-center justify-center max-w-5xl gap-4">
+    <section className="w-full flex flex-wrap justify-center max-w-5xl gap-4">
       {data
         .filter((a) => {
           if (filterValue === "") return true;
