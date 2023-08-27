@@ -15,7 +15,7 @@ const Video = ({
   return (
     <div className="w-full max-w-[18rem] backdrop-opacity rounded-xl bg-[#1a1a1a] p-2 flex flex-col gap-3 text-white">
       <img src={src} alt="video thumbnail" className="rounded-md" />
-      <p className="text-center">{title}</p>
+      <p className="text-center mb-auto">{title}</p>
 
       <div className="w-full flex items-center flex-col justify-center gap-3">
         <Link
