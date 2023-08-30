@@ -26,6 +26,7 @@ const Add = () => {
         process.env.NEXT_PUBLIC_EMAIL!,
         password
       );
+
       setPassword("");
     } catch (e) {
       alert("Incorrect password.");
@@ -44,7 +45,7 @@ const Add = () => {
       if (a) setSignedIn(true);
       else setSignedIn(false);
     });
-    console.log(auth.currentUser);
+
     return unsub;
   }, []);
 
@@ -86,6 +87,7 @@ const Add = () => {
               placeholder="Password..."
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              onKeyUp={(e) => e.key === "Enter" && !disabled && signIn()}
               className="w-full h-12 py-2 px-5  bg-[#1a1a1a] border-2 border-regular outline-none rounded-lg text-white font-gt max-w-lg"
             />
 
