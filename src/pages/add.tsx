@@ -10,8 +10,11 @@ import {
   signOut,
 } from "firebase/auth";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { HiArrowNarrowLeft } from "react-icons/hi";
+import { useRouter } from "next/router";
 
 const Add = () => {
+  const router = useRouter();
   const [signedIn, setSignedIn] = useState(false);
   const [password, setPassword] = useState("");
   const [disabled, setDisabled] = useState(true);
@@ -55,6 +58,14 @@ const Add = () => {
         <title>Ted-Ed Summarized | Add New</title>
         <link rel="shortcut icon" href="/main.png" type="image/x-icon" />
       </Head>
+
+      <button
+        className="flex items-center justify-center gap-2 text-white fixed top-4 font-semibold rounded-md left-4 bg-[#1a1a1a] px-4 py-2 text-lg"
+        onClick={() => router.push("/")}
+      >
+        <HiArrowNarrowLeft className="text-xl" /> Back
+      </button>
+
       <main className="w-full max-w-5xl flex items-center justify-center gap-4 flex-col">
         {signedIn ? (
           <>
