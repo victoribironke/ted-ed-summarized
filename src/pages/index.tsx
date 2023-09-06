@@ -3,12 +3,13 @@ import Search from "@/components/Search";
 import Videos from "@/components/Videos";
 import { db } from "@/firebase/firebase";
 import { doc, onSnapshot } from "firebase/firestore";
-import { Hanken_Grotesk } from "next/font/google";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Hanken_Grotesk } from "next/font/google";
+import { classNames } from "@/utils/helpers";
 
-const hanken_grotesk = Hanken_Grotesk({ subsets: ["latin"] });
+const hankenGrotesk = Hanken_Grotesk({ subsets: ["latin"] });
 
 const Home = () => {
   const [summaries, setSummaries] = useState([]);
@@ -32,7 +33,10 @@ const Home = () => {
         <link rel="shortcut icon" href="/main.png" type="image/x-icon" />
       </Head>
       <main
-        className={`w-full flex flex-col gap-8 items-center ${hanken_grotesk.className}`}
+        className={classNames(
+          "w-full flex flex-col gap-8 items-center max-w-6xl",
+          hankenGrotesk.className
+        )}
       >
         <Search />
         <Link

@@ -17,7 +17,7 @@ const Search = () => {
   }, [query]);
 
   return (
-    <section className="w-full flex items-center justify-center flex-col md:flex-row gap-4 max-w-5xl">
+    <section className="w-full flex items-center justify-center flex-col md:flex-row gap-4">
       <input
         type="text"
         placeholder="Search by video ID..."
