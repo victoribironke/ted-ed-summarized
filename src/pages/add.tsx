@@ -12,6 +12,10 @@ import {
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { HiArrowNarrowLeft } from "react-icons/hi";
 import { useRouter } from "next/router";
+import { Hanken_Grotesk } from "next/font/google";
+import { classNames } from "@/utils/helpers";
+
+const hankenGrotesk = Hanken_Grotesk({ subsets: ["latin"] });
 
 const Add = () => {
   const router = useRouter();
@@ -60,13 +64,21 @@ const Add = () => {
       </Head>
 
       <button
-        className="flex items-center justify-center gap-2 text-white fixed top-4 font-semibold rounded-md left-4 bg-[#1a1a1a] px-4 py-2 text-lg"
+        className={classNames(
+          "flex items-center justify-center gap-2 text-white fixed top-4 font-semibold rounded-md left-4 bg-[#1a1a1a] px-4 py-2 text-lg",
+          hankenGrotesk.className
+        )}
         onClick={() => router.push("/")}
       >
         <HiArrowNarrowLeft className="text-xl" /> Back
       </button>
 
-      <main className="w-full max-w-5xl flex items-center justify-center gap-4 flex-col">
+      <main
+        className={classNames(
+          "w-full max-w-6xl flex items-center justify-center gap-4 flex-col",
+          hankenGrotesk.className
+        )}
+      >
         {signedIn ? (
           <>
             <h1 className="text-white font-semibold text-3xl">Add new...</h1>
